@@ -35,7 +35,6 @@ function StateManager() {
 				}
 			});
 		}
-
 			notifyListeners("volume", [options.volume]);
 			if (isKK()) {
 				notifyListeners("kkStart");
@@ -60,6 +59,10 @@ function StateManager() {
 
 	function isKK() {
 		return options.alwaysKK || (options.enableKK && isKKTime);
+	}
+	
+	function isLive() {
+		return options.music == 'new-leaf-live';
 	}
 
 	function isLive() {
@@ -86,6 +89,21 @@ function StateManager() {
 				callback();
 			}
 		});
+	}
+	
+	// Gets the current game based on the option, and weather if
+	// we're using a live weather option.
+	function getMusic() {
+		if(isLive()) {
+			if(weatherManager.getWeather() == "Rain")
+				return "new-leaf-raining";
+			else if(weatherManager.getWeather() == "Snow")
+				return "new-leaf-snowing";
+			else
+				return "new-leaf";			
+		}
+		else
+			return options.music;
 	}
 
 	// Gets the current game based on the option, and weather if

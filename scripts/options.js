@@ -4,15 +4,15 @@ function saveOptions() {
 	var volume              = document.getElementById('volume').value;
 	var enableNotifications = document.getElementById('enable-notifications').checked;
 	// 2 separate KK variables to preserve compatibility with old versions
-	var alwaysKK            = document.getElementById('always-kk').checked;
-	var enableKK            = alwaysKK || document.getElementById('enable-kk').checked;
-	var enableTownTune      = document.getElementById('enable-town-tune').checked;
-	var zipCode             = document.getElementById('zip-code').value;
-	var countryCode         = document.getElementById('country-code').value;
-	var enableBadgeText     = document.getElementById('enable-badge').checked;
-
 	var music;
 	var currentSong;
+	var alwaysKK = document.getElementById('always-kk').checked;
+	var enableKK = alwaysKK || document.getElementById('enable-kk').checked;
+	var enableTownTune = document.getElementById('enable-town-tune').checked;
+	var zipCode = document.getElementById('zip-code').value;
+	var countryCode = document.getElementById('country-code').value;
+	var enableBadgeText = document.getElementById('enable-badge').checked;
+
 	if (document.getElementById('animal-forrest').checked) {
 		music = 'animal-forrest';
 	}
@@ -39,18 +39,28 @@ function saveOptions() {
 	}
 	else if (document.getElementById('random').checked) {
 		music = 'random';
+	
+	var icon;
+	if (document.getElementById('kk-icon').checked) {
+		chrome.browserAction.setIcon({path: 'img/icon_38_kk.png'});
+		icon = 'kk-icon';
+	}
+	else if (document.getElementById('leaf-icon').checked) {
+		chrome.browserAction.setIcon({path: 'img/icon_38_leaf.png'});
+		icon = 'leaf-icon';
 	}
 
 	chrome.storage.sync.set({
 		volume             : volume,
 		music              : music,
 		enableNotifications: enableNotifications,
-		enableKK           : enableKK,
-		alwaysKK           : alwaysKK,
-		enableTownTune     : enableTownTune,
-		zipCode            : zipCode,
-		countryCode        : countryCode,
-		enableBadgeText    : enableBadgeText
+		enableKK: enableKK,
+		alwaysKK: alwaysKK,
+		enableTownTune: enableTownTune,
+		zipCode: zipCode,
+		countryCode: countryCode,
+		enableBadgeText: enableBadgeText,
+		icon: icon
 	}, function() { });
 }
 
@@ -65,6 +75,7 @@ function restoreOptions() {
 		zipCode            : "98052",
 		countryCode        : "us",
 		enableBadgeText    : true
+		icon               : 'kk-icon'
 	}, function(items) {
 		document.getElementById('volume').value                 = items.volume;
 		document.getElementById(items.music).checked            = true;
@@ -76,6 +87,7 @@ function restoreOptions() {
 		document.getElementById('zip-code').value               = items.zipCode;
 		document.getElementById('country-code').value           = items.countryCode;
 		document.getElementById('enable-badge').checked         = items.enableBadgeText;
+		document.getElementById(items.icon).checked = true;
 	});
 }
 
@@ -99,6 +111,8 @@ document.getElementById('enable-notifications').onclick = saveOptions;
 document.getElementById('enable-town-tune').onclick     = saveOptions;
 document.getElementById('enable-badge').onclick         = saveOptions;
 document.getElementById('update-location').onclick      = saveOptions;
+document.getElementById('kk-icon').onclick = saveOptions;
+document.getElementById('leaf-icon').onclick = saveOptions; 
 
 // About/Help
 document.getElementById('get-help').onclick = function() {

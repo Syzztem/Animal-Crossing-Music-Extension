@@ -106,7 +106,7 @@ function AudioManager(addEventListener, isTownTune) {
 	}
 
 	addEventListener("hourMusic", playHourlyMusic);
-
+	
 	addEventListener("kkStart", playKKMusic);
 
 	addEventListener("gameChange", playHourlyMusic);

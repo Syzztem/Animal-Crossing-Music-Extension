@@ -18,7 +18,8 @@
 <body class="chrome-bootstrap">
 	<div class="frame">
 		<div class="navigation">
-			<h1><a href="#">Animal Crossing Music</a></h1>
+			<!-- <h1><a href="#">Animal Crossing Music</a></h1> -->
+			<img src="img/sign.png" width="150">
 			<ul class="menu" style="margin-top: 4em;">
 				<li class="selected">
 					<a href="#options">Options</a>
@@ -78,7 +79,6 @@
 						<div class="radio">
 							<input id="random" name="music-choice" type="radio"><label for="random"><span><span></span></span>Random!</label>
 						</div>
-
 					</section>
 
 					<section>
@@ -106,13 +106,25 @@
 						<div class="checkbox">
 							<input id="enable-notifications" type="checkbox"><label for="enable-notifications"><span></span>Enable Chrome notifications on song change</label>
 						</div>
-
 						<div class="checkbox">
 							<input id="enable-badge" type="checkbox"><label for="enable-badge"><span></span>Display text on badge</label>
 						</div>
 					</section>
-
 					<section>
+						<h3>Icon</h3>
+						<div class="radio">
+							<input id="kk-icon" name="icon" type="radio">
+							<label for="kk-icon"><span><span></span></span>K.K. Slider Icon</label>
+							<img src='img/icon_19_kk.png'/>
+						</div>
+						<div class="radio">
+							<input id="leaf-icon" name="icon" type="radio">
+							<label for="leaf-icon"><span><span></span></span>Leaf Icon</label>
+							<img src='img/icon_19_leaf.png'/>
+						</div>
+					</section>
+
+					<section>						
 						<h3>Live Weather Location</h3>
 						<div class="text">
 								<input type="text" id="zip-code" value="618708">
@@ -194,6 +206,9 @@
 				</div>
 			</div>
 		</div>
+
+		<img id='house' src='img/house.png' width='150'/>
+
 	</div>
 
 	<script src="scripts/options.js"></script>
