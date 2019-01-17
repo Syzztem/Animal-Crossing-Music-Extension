@@ -4,15 +4,15 @@ function saveOptions() {
 	var volume              = document.getElementById('volume').value;
 	var enableNotifications = document.getElementById('enable-notifications').checked;
 	// 2 separate KK variables to preserve compatibility with old versions
+	var alwaysKK            = document.getElementById('always-kk').checked;
+	var enableKK            = alwaysKK || document.getElementById('enable-kk').checked;
+	var enableTownTune      = document.getElementById('enable-town-tune').checked;
+	var zipCode             = document.getElementById('zip-code').value;
+	var countryCode         = document.getElementById('country-code').value;
+	var enableBadgeText     = document.getElementById('enable-badge').checked;
+
 	var music;
 	var currentSong;
-	var alwaysKK = document.getElementById('always-kk').checked;
-	var enableKK = alwaysKK || document.getElementById('enable-kk').checked;
-	var enableTownTune = document.getElementById('enable-town-tune').checked;
-	var zipCode = document.getElementById('zip-code').value;
-	var countryCode = document.getElementById('country-code').value;
-	var enableBadgeText = document.getElementById('enable-badge').checked;
-
 	if (document.getElementById('animal-forrest').checked) {
 		music = 'animal-forrest';
 	}
@@ -39,7 +39,6 @@ function saveOptions() {
 	}
 	else if (document.getElementById('random').checked) {
 		music = 'random';
-	
 	var icon;
 	if (document.getElementById('kk-icon').checked) {
 		chrome.browserAction.setIcon({path: 'img/icon_38_kk.png'});
@@ -54,13 +53,13 @@ function saveOptions() {
 		volume             : volume,
 		music              : music,
 		enableNotifications: enableNotifications,
-		enableKK: enableKK,
-		alwaysKK: alwaysKK,
-		enableTownTune: enableTownTune,
-		zipCode: zipCode,
-		countryCode: countryCode,
-		enableBadgeText: enableBadgeText,
-		icon: icon
+		enableKK           : enableKK,
+		alwaysKK           : alwaysKK,
+		enableTownTune     : enableTownTune,
+		zipCode            : zipCode,
+		countryCode        : countryCode,
+		enableBadgeText    : enableBadgeText
+		icon               : icon
 	}, function() { });
 }
 
@@ -101,7 +100,6 @@ document.getElementById('wild-world-snowing').onclick   = saveOptions;
 document.getElementById('new-leaf').onclick             = saveOptions;
 document.getElementById('new-leaf-snowing').onclick     = saveOptions;
 document.getElementById('new-leaf-raining').onclick     = saveOptions;
-document.getElementById('new-leaf-live').onclick        = saveOptions;
 document.getElementById('new-leaf-live').onclick        = saveOptions;
 document.getElementById('random').onclick               = saveOptions;
 document.getElementById('no-kk').onclick                = saveOptions;
